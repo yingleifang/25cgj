@@ -10,11 +10,11 @@ public class SanityBar : MonoBehaviour
 
     void Start()
     {
-        //×¢²á¶ÔÓÚplayerÉÏµÄsanityµÄ±ä»¯¼àÌý
+        //×¢ï¿½ï¿½ï¿½ï¿½ï¿½playerï¿½Ïµï¿½sanityï¿½Ä±ä»¯ï¿½ï¿½ï¿½ï¿½
         player.GetComponent<Player>().CurrentSanity.Register(value =>
         {
-            //Debug.Log("µ±Ç°sanity£º" + value);
-            //¸üÐÂScrollbarµÄÏÔÊ¾
+            //Debug.Log("ï¿½ï¿½Ç°sanityï¿½ï¿½" + value);
+            //ï¿½ï¿½ï¿½ï¿½Scrollbarï¿½ï¿½ï¿½ï¿½Ê¾
 
             GetComponent<Scrollbar>().size = player.GetComponent<Player>().CurrentSanity.Value / player.GetComponent<Player>().PreSanity;
             //Debug.Log("scrollbar value:" + GetComponent<Scrollbar>().size);
