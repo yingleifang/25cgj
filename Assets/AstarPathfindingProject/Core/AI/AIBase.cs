@@ -443,7 +443,12 @@ namespace Pathfinding {
 				Vector3 nextPosition;
 				Quaternion nextRotation;
 				MovementUpdate(Time.fixedDeltaTime, out nextPosition, out nextRotation);
-				FinalizeMovement(nextPosition, nextRotation);
+                //如果是bodytype不是static，就调用FinalizeMovement
+				if(rigid2D.bodyType!= RigidbodyType2D.Static)
+				{
+                    FinalizeMovement(nextPosition, nextRotation);
+                }
+                
 			}
 		}
 
