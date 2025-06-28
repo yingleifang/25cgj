@@ -12,7 +12,6 @@ namespace QFramework
     {
         public static ResDatas BuildEditorDataTable()
         {
-            Debug.Log("Start BuildAssetDataTable!");
             var resDatas = new ResDatas();
             AddABInfo2ResDatas(resDatas);
             return resDatas;

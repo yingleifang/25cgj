@@ -15,11 +15,9 @@ public class SanityBar : MonoBehaviour
         //注册对于player上的sanity的变化监听
         player.GetComponent<Player>().CurrentSanity.Register(value =>
         {
-            Debug.Log("当前sanity：" + value);
             //更新Scrollbar的显示
 
             GetComponent<Scrollbar>().size = player.GetComponent<Player>().CurrentSanity.Value / player.GetComponent<Player>().PreSanity;
-            Debug.Log("scrollbar value:" + GetComponent<Scrollbar>().size);
         }
             ).UnRegisterWhenGameObjectDestroyed(gameObject);
     }
