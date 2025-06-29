@@ -33,7 +33,7 @@ public class TimeManager : MonoBehaviour
         CurrentGameTime.Value += Time.deltaTime;
         if(CurrentGameTime.Value >= levelTime[currentLevel-1])
         {
-            if (currentLevel==4)
+            if (currentLevel==2)
             {
                 Debug.Log("Congratulations! You have completed all the levels!");
                 win();
