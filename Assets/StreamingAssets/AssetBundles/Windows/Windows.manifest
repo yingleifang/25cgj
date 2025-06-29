@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1593381222
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: frontpagepanal_prefab
+      Dependencies: {}
+    Info_1:
+      Name: tuitionpanal_prefab
+      Dependencies: {}
+    Info_2:
+      Name: winpanal_prefab
+      Dependencies: {}
+    Info_3:
+      Name: staffpanal_prefab
+      Dependencies: {}
+    Info_4:
+      Name: failpanal_prefab
+      Dependencies: {}
