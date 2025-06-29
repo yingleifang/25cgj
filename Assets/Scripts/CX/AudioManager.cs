@@ -130,8 +130,12 @@ public class AudioManager : MonoBehaviour
 
     //播放首页bgm
     public void Play_FrontPage_bgm()
-    {
-        PlayBGM(FrontPagebgmClip);
+    {//如果当前播放的背景音乐不是首页背景音乐，则先停止播放，再播放首页背景音乐
+        if( bgmAudioSource.clip != FrontPagebgmClip)
+        {
+            PlayBGM(FrontPagebgmClip);
+        }
+        
     }
 
     //使用游戏进程音源播放游戏失败音效

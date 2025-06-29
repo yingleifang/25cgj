@@ -15,6 +15,10 @@ using Pathfinding;
 /// </summary>
 public class LightConeScanner : MonoBehaviour
 {
+    //产生药物的音效事件
+    public ObjectEventSO GenerateDrugEvent;
+
+
     // ───────────────────── Inspector ─────────────────────
     [Header("References")]
     [Tooltip("2D Point/Spot Light2D 组件，应挂在 HeadLampPivot 上")]
@@ -141,6 +145,7 @@ public class LightConeScanner : MonoBehaviour
         Destroy(tr.gameObject);
 
         var spawned = Instantiate(deathSpawnPrefab, tr.position, Quaternion.identity);
+        GenerateDrugEvent.RaiseEvent(null, this);
         spawned.SetActive(true); 
     }
 

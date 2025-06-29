@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         if (timer >= changeinterval)
         {
             timer = 0;
-            CurrentSanity.Value -= 2.0f;
+            CurrentSanity.Value -= 1.5f;
         }
     }
 

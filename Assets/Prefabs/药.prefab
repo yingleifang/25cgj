@@ -267,4 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53b98ca4f978cb446b0ecedbb50ddd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SanityGain: 5
+  SanityGain: 10
+  EatenEvent: {fileID: 11400000, guid: 59dd2db07a087eb40b24f1055dd3d339, type: 2}

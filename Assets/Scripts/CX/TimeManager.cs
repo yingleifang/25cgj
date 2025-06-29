@@ -16,6 +16,8 @@ public class TimeManager : MonoBehaviour
     public GameObject levelmgr;
 
     public ObjectEventSO gameStartEvent;
+    public ObjectEventSO levelChange;
+    public ObjectEventSO winEvent;
     private void Start()
     {
         gameStartEvent.RaiseEvent(null, this);
@@ -40,10 +42,14 @@ public class TimeManager : MonoBehaviour
                 Debug.Log("Congratulations! You have completed all the levels!");
                 win();
             }
-            currentLevel++;
-            CurrentGameTime.Value = 0;
-            currentLevelTime = levelTime[currentLevel-1];
-            nextLevel();
+            else
+            {
+                currentLevel++;
+                CurrentGameTime.Value = 0;
+                currentLevelTime = levelTime[currentLevel - 1];
+                nextLevel();
+            }
+            
 
         }
         
@@ -51,6 +57,7 @@ public class TimeManager : MonoBehaviour
 
     public void nextLevel()
     {
+        levelChange.RaiseEvent(null, this);
         switch (currentLevel)
         {   
             case 1:
@@ -76,7 +83,7 @@ public class TimeManager : MonoBehaviour
     }
 
     public void win()
-    {
+    {winEvent.RaiseEvent(null, this);
         //别的什么效果
         Debug.Log("Win OHHHHHHHH!");
         Debug.Log("OHHHHHHHH!");            //移除当前Scene
