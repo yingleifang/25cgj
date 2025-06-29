@@ -5,15 +5,15 @@ using QFramework;
 
 namespace QFramework.Coward
 {
-	// Generate Id:3c61e880-96d4-488e-8b8b-70dbc6f16c51
-	public partial class TuitionPanal
+	// Generate Id:2a86b240-ddbd-41cd-94f3-c0451a401826
+	public partial class WinPanal
 	{
-		public const string Name = "TuitionPanal";
+		public const string Name = "WinPanal";
 		
 		[SerializeField]
 		public UnityEngine.UI.Button Back_to_Front;
 		
-		private TuitionPanalData mPrivateData = null;
+		private WinPanalData mPrivateData = null;
 		
 		protected override void ClearUIComponents()
 		{
@@ -22,7 +22,7 @@ namespace QFramework.Coward
 			mData = null;
 		}
 		
-		public TuitionPanalData Data
+		public WinPanalData Data
 		{
 			get
 			{
@@ -30,11 +30,11 @@ namespace QFramework.Coward
 			}
 		}
 		
-		TuitionPanalData mData
+		WinPanalData mData
 		{
 			get
 			{
-				return mPrivateData ?? (mPrivateData = new TuitionPanalData());
+				return mPrivateData ?? (mPrivateData = new WinPanalData());
 			}
 			set
 			{

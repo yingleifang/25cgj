@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
+using UnityEngine.SceneManagement;
 
 public class TimeManager : MonoBehaviour
 {//进入GameScene后开始计时
@@ -74,7 +75,12 @@ public class TimeManager : MonoBehaviour
 
     public void win()
     {
-
+        //别的什么效果
+        Debug.Log("Win OHHHHHHHH!");
+        Debug.Log("OHHHHHHHH!");            //移除当前Scene
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+        //加载游戏结束面板
+        SceneManager.LoadScene("TestWinPanal");
     }
 
 }

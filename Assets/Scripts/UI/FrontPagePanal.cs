@@ -30,9 +30,23 @@ namespace QFramework.Coward
                 QuitGame();
             });
 
+            //打开文字教程的页面
+            RuleButton.onClick.AddListener(() =>
+            {
+                //关闭自己
+                CloseSelf();
+                Debug.Log("打开文字教程");
+                SceneManager.LoadScene("TestTuitionPanal");
+            });
 
-
-
+            //打开staff页面
+            StaffButton.onClick.AddListener(() =>
+            {
+                //关闭自己
+                CloseSelf();
+                Debug.Log("打开staff");
+                SceneManager.LoadScene("TestStaffPanal");
+            });
 
         }
 		
