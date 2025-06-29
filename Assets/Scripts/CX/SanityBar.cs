@@ -11,6 +11,7 @@ public class SanityBar : MonoBehaviour
     public GameObject player;
     public Sprite[] StateIcons;
     public GameObject Icon;
+    public ObjectEventSO playerdead;
 
 
     void Start()
@@ -45,6 +46,7 @@ public class SanityBar : MonoBehaviour
             //如果san值掉到0或0以下
             if (player.GetComponent<Player>().CurrentSanity.Value <= 0)
             {
+                playerdead.RaiseEvent(null, this);
                 GetComponent<Scrollbar>().size = 0;
                 //使玩家的移动控制脚本失效
                 player.GetComponent<TopDownCharacterController>().enabled = false;

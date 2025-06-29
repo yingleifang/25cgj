@@ -21,13 +21,12 @@ public class AudioManager : MonoBehaviour
     //鼠标音效使用的音源
     public AudioSource Mouse_effectAudioSource;
 
-    //播放时间背景音乐的音源
-    public AudioSource Time_effectAudioSource;
+    
 
 
 
     //游戏进程音效的音源
-    public   AudioSource gameProcessAudioSource;//用于播放游戏进程音效的音源
+    public   AudioSource TimeAudioSource;//用于播放时间音效的音源
 
     //游戏音效
     //首页背景音乐音效
@@ -71,45 +70,62 @@ public class AudioManager : MonoBehaviour
    }
     //播放背景音乐的函数
     //当前有在播放的背景音乐，先停止播放，再播放新的背景音乐
+    //播放时是循环播放的
    public void PlayBGM(AudioClip clip)
    {
-      if (bgmAudioSource.isPlaying)
-      {
-         bgmAudioSource.Stop();
-      } 
-      bgmAudioSource.clip = clip;
-      bgmAudioSource.Play();
-   }
+        //先停止播放
+        if (bgmAudioSource.isPlaying)
+        {
+            bgmAudioSource.Stop();
+        }
 
-   public void Play_drugs_Effect(AudioClip clip)//播放有关药品的音效
+        bgmAudioSource.clip = clip;
+
+        bgmAudioSource.Play();
+
+
+    }
+
+   public void Play_drugsdrop_Effect()//播放有关药品掉落的音效
    {
-      Drug_effectAudioSource.clip = clip;
+      Drug_effectAudioSource.clip = drugdropClip;
       Drug_effectAudioSource.Play();
    }
 
-    //播放有关怪物的音效
-    public void Play_enemy_Effect(AudioClip clip)
+    //播放有关药品吃掉的音效
+    public void Play_eatDrugs_Effect()
     {
-            Monster_effectAudioSource.clip = clip;
+        Drug_effectAudioSource.clip = drugeatClip;
+        Drug_effectAudioSource.Play();
+    }
+
+
+
+
+    //播放怪物被定住的音效
+    public void Play_enemyStop_Effect()
+    {
+            Monster_effectAudioSource.clip = monsterstopClip;
             Monster_effectAudioSource.Play();
     }
 
     public void Play_game_process_Effect(AudioClip clip)
-    {       gameProcessAudioSource.clip = clip;
-            gameProcessAudioSource.Play();
+    {       Game_process_effectAudioSource.clip = clip;
+                Game_process_effectAudioSource.Play();
     }
 //播放游戏进程音效
 
-    public void Play_mouse_Effect(AudioClip clip)//播放鼠标音效
-    {
-        Mouse_effectAudioSource.clip = clip;
+    public void Play_mouse_Effect()//播放鼠标音效,只响一下
+
+    {Debug.Log("play mouse effect");
+        Mouse_effectAudioSource.clip = mouseClickClip;
         Mouse_effectAudioSource.Play();
     }
 
-    public void Play_time_Effect(AudioClip clip)//播放时间音效，不用背景音源
+    public void Play_time_Effect()//播放时间音效，用背景音源
     {
-        Time_effectAudioSource.clip = clip;
-        Time_effectAudioSource.Play();
+        TimeAudioSource.clip = timetickClip;
+        TimeAudioSource.Play();
     }
 
     //播放首页bgm
@@ -118,5 +134,38 @@ public class AudioManager : MonoBehaviour
         PlayBGM(FrontPagebgmClip);
     }
 
+    //使用游戏进程音源播放游戏失败音效
+    public void Lose()
+    {
+        Play_game_process_Effect(mainCharDeadClip);
 
+    }
+
+    //使用游戏进程音源播放游戏胜利音效
+    public void Win()
+    {
+        
+        Play_game_process_Effect(gameWinClip);
+    }
+
+    public void heard()
+    {
+        Debug.Log("heard");
+    }
+
+    public void Play_WhiteNoise()
+    {Debug.Log("play white noise");
+        PlayBGM(WhiteNoiseClip);
+    }
+    //暂停时间音效
+    public void Pause_time_Effect()
+    {
+        TimeAudioSource.Pause();
+    }
+
+    public void levelChange()
+    {
+        Game_process_effectAudioSource.clip = levelChangeClip;
+        Game_process_effectAudioSource.Play();
+    }
 }

@@ -15,8 +15,10 @@ public class TimeManager : MonoBehaviour
     public int currentLevelTime;
     public GameObject levelmgr;
 
+    public ObjectEventSO gameStartEvent;
     private void Start()
-    { 
+    {
+        gameStartEvent.RaiseEvent(null, this);
     //时间初始化为0
         CurrentGameTime.Value = 0;
         //进入游戏后默认第一关

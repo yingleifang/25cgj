@@ -14,6 +14,10 @@ public class Player : MonoBehaviour
     //动画器
     public Animator animator;
 
+    //死亡事件
+    public ObjectEventSO playerdead;
+
+
     void Start()
     {   animator = GetComponent<Animator>();
         timer = 0;
@@ -57,7 +61,7 @@ public class Player : MonoBehaviour
                 //播放死亡动画
                 animator.SetTrigger("Dead");
 
-
+                playerdead.RaiseEvent(null, this);
 
                 //预备死亡页面的跳转逻辑
                 //设置一个2s的协程用于打开失败页面

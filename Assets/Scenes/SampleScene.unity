@@ -2622,6 +2622,7 @@ MonoBehaviour:
   timer: 0
   changeinterval: 1
   animator: {fileID: 0}
+  playerdead: {fileID: 11400000, guid: 5d078a1126074a149abf4b45b1a4c7c6, type: 2}
 --- !u!95 &413357442
 Animator:
   serializedVersion: 5
@@ -11445,6 +11446,7 @@ MonoBehaviour:
   levelTime: 140000001e0000001e00000028000000
   currentLevelTime: 0
   levelmgr: {fileID: 2049005152}
+  gameStartEvent: {fileID: 11400000, guid: 5d947848e8d9f104ba111e7f438015b0, type: 2}
 --- !u!4 &1922821575
 Transform:
   m_ObjectHideFlags: 0
