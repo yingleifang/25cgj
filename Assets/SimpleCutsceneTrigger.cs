@@ -27,6 +27,12 @@ public class SimpleCutsceneTrigger : MonoBehaviour
     public float settlePosThreshold = 0.05f;   // 米
     public float settleRotThreshold = 1f;      // 角度(°)
 
+    [Header("帧序列 & 帧率")]
+    [SerializeField] Sprite[] pngFrames;   // 在 Inspector 里把序列拖进来
+    [SerializeField] float fps = 40;
+
+    [SerializeField] SpriteRenderer _sr;
+
     /* ---------- 内部 ---------- */
 
     CinemachineBrain _brain;
@@ -42,6 +48,77 @@ public class SimpleCutsceneTrigger : MonoBehaviour
         if (!_busy) StartCoroutine(Run());
     }
 
+    public void PlayCutscene2()
+    {
+        if (!_busy) StartCoroutine(Run2());
+    }
+
+    IEnumerator Run2()
+    {
+        _busy = true;
+
+        _lightBreathingHold.ForceSetIntensity(0.3f); // 见下方方法
+        _lightBreathingHold.enabled = false;
+        /* ---------- 冻结脚本 ---------- */
+        foreach (var s in scriptsToDisable) s.enabled = false;
+
+        foreach (var ai in FindObjectsOfType<Pathfinding.AIPath>())
+            ai.canMove = false;          // A* Project
+
+        /* ---------- 切到 Cutscene ---------- */
+        int gameplayPrio = gameplayCam.Priority;
+        int cutscenePrio = cutsceneCam.Priority;       // 记录原值
+
+        cutsceneCam.Priority = gameplayPrio + 10;      // 抢镜
+        yield return new WaitUntil(() => !_brain.IsBlending);
+
+        yield return StartCoroutine(PlayPngSequence());
+
+        /* ---------- 切回 Gameplay ---------- */
+        cutsceneCam.Priority = gameplayPrio - 1;
+        // 若想保留 cutsceneCam 原始 Priority，请改成：
+        // cutsceneCam.Priority = cutscenePrio;
+
+        /* ---------- 等待镜头归位 ---------- */
+        yield return new WaitUntil(() =>
+        {
+            if (_brain.IsBlending) return false;                       // 仍在 Blend
+            if (_brain.ActiveVirtualCamera != (ICinemachineCamera)gameplayCam)
+                return false;                                          // 还不是 GameplayCam
+
+            // 若禁用静止检测，直接返回 true
+            if (settlePosThreshold <= 0f || settleRotThreshold <= 0f)
+                return true;
+
+            // 进一步检查是否“完全贴合”目标位姿
+            Transform camTf = Camera.main.transform;
+            Vector3 goalPos = gameplayCam.State.FinalPosition;
+            Quaternion goalRot = gameplayCam.State.FinalOrientation;
+
+            bool posOK = Vector3.Distance(camTf.position, goalPos) < settlePosThreshold;
+            bool rotOK = Quaternion.Angle(camTf.rotation, goalRot) < settleRotThreshold;
+            return posOK && rotOK;
+        });
+
+        foreach (var s in scriptsToDisable) s.enabled = true;
+        _busy = false;
+
+        foreach (var ai in FindObjectsOfType<Pathfinding.AIPath>())
+            ai.canMove = true;          // A* Project
+    }
+
+    IEnumerator PlayPngSequence()
+    {
+        float frameTime = 1f / fps;
+
+        foreach (var sprite in pngFrames)
+        {
+            _sr.sprite = sprite;
+            yield return new WaitForSeconds(frameTime);
+        }
+
+        // 如果需要循环就 while(true) 或再次 foreach
+    }
     IEnumerator Run()
     {
         _busy = true;
@@ -50,6 +127,8 @@ public class SimpleCutsceneTrigger : MonoBehaviour
         _lightBreathingHold.enabled = false;
         /* ---------- 冻结脚本 ---------- */
         foreach (var s in scriptsToDisable) s.enabled = false;
+        foreach (var ai in FindObjectsOfType<Pathfinding.AIPath>())
+            ai.canMove = false;          // A* Project
 
         /* ---------- 切到 Cutscene ---------- */
         int gameplayPrio = gameplayCam.Priority;
@@ -88,6 +167,8 @@ public class SimpleCutsceneTrigger : MonoBehaviour
         });
 
         foreach (var s in scriptsToDisable) s.enabled = true;
+        foreach (var ai in FindObjectsOfType<Pathfinding.AIPath>())
+            ai.canMove = true;          // A* Project
         _busy = false;
     }
 }
