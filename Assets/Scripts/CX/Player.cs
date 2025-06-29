@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using QFramework;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour
         if (timer >= changeinterval)
         {
             timer = 0;
-            CurrentSanity.Value -= 1.0f;
+            CurrentSanity.Value -= 20.0f;
         }
     }
 
@@ -59,6 +60,10 @@ public class Player : MonoBehaviour
 
 
                 //预备死亡页面的跳转逻辑
+                //设置一个2s的协程用于打开失败页面
+                StartCoroutine(OpenFailPage());
+
+
 
 
 
@@ -76,6 +81,19 @@ public class Player : MonoBehaviour
 
             }
         }
+    }
+
+    //打开失败页面的协程函数
+    IEnumerator OpenFailPage()
+    {
+        yield return new WaitForSeconds(1.5f);
+        //跳转到失败页面
+        Debug.Log("Game Over OHHHHHHHH!");
+        Debug.Log("OHHHHHHHH!");            //移除当前Scene
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
+        //加载游戏结束面板
+        SceneManager.LoadScene("TestFailPanal");
+
     }
 
 
