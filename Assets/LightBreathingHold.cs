@@ -54,4 +54,9 @@ public class LightBreathingHold : MonoBehaviour
         StopAllCoroutines();      // 立即停止呼吸
         _light.intensity = val;   // 当帧就生效
     }
+
+    private void OnEnable()
+    {
+        StartCoroutine(BreathLoop());
+    }
 }

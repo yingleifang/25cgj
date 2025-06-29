@@ -60,6 +60,6 @@ public void LoadLevel2()
         _confiner.InvalidateCache();
         Destroy(airwall3);
         cutsceneCam.transform.position = cutscenePoints[2].position;
-        GetComponent<SimpleCutsceneTrigger>().PlayCutscene();
+        GetComponent<SimpleCutsceneTrigger>().PlayCutscene2();
     }
 }
