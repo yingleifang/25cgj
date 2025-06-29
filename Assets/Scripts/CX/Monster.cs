@@ -20,10 +20,15 @@ public class Monster : MonoBehaviour
     public MonsterState monsterState;
     public Rigidbody2D rb;
 
+    //动画器
+    public Animator animator;
+
     
     void Start()
     {   rb = GetComponent<Rigidbody2D>();
         //注册对于玩家的sanity值的监听
+        //获取动画器
+        animator = GetComponent<Animator>();
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if(player!= null)
@@ -39,6 +44,8 @@ public class Monster : MonoBehaviour
                     GetComponent<AIDestinationSetter>().enabled = true;
                     //开启AIPath组件
                     GetComponent<AIPath>().enabled = true;
+                    //播放动画
+                    animator.SetBool("Moving", true);
 
                 }
                 else
@@ -51,6 +58,8 @@ public class Monster : MonoBehaviour
                     GetComponent<AIDestinationSetter>().enabled = false;
                     //关闭AIPath组件
                     GetComponent<AIPath>().enabled = false;
+                    //播放动画
+                    animator.SetBool("Back_to_Null", true);
                 }
 
 

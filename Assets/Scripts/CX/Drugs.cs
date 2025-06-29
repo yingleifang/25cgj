@@ -10,7 +10,7 @@ public class Drugs : MonoBehaviour
     //当接触到Player以后，使玩家身上的San值增加
     public void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {   
-        Debug.Log("发生了碰撞");
+        //Debug.Log("发生了碰撞");
         if (collision.gameObject.tag == "Player")
         {
          
