@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 5813398839756239508}
   - component: {fileID: 1083879858234684190}
   - component: {fileID: 3705261380684836211}
-  m_Layer: 6
+  - component: {fileID: -6781539902884980700}
+  m_Layer: 0
   m_Name: "Monster\u5E8A"
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -106,6 +107,7 @@ MonoBehaviour:
   enterMoveSanityThreshold: 70
   monsterState: 0
   rb: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &8052335600062252253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,3 +303,24 @@ MonoBehaviour:
   uniqueID: 4135797401972023766
   updateError: 1
   checkTime: 0.2
+--- !u!95 &-6781539902884980700
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971271111294032069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 112ca211de23974488c0383e87636a1c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

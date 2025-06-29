@@ -12,6 +12,7 @@ public class TimeManager : MonoBehaviour
 
     public int[] levelTime = { 10, 20, 30, 40 };//关卡时间
     public int currentLevelTime;
+    public GameObject levelmgr;
 
     private void Start()
     { 
@@ -20,6 +21,7 @@ public class TimeManager : MonoBehaviour
         //进入游戏后默认第一关
         currentLevel = 1;
         currentLevelTime = levelTime[0];
+        //nextLevel();
         
     
     }
@@ -46,6 +48,27 @@ public class TimeManager : MonoBehaviour
 
     public void nextLevel()
     {
+        switch (currentLevel)
+        {   
+            case 1:
+                Debug.Log("Level 1");
+                levelmgr.GetComponent<LevelManager>().LoadLevel1();
+                break;
+            case 2:
+                Debug.Log("Level 2");
+                levelmgr.GetComponent<LevelManager>().LoadLevel2();
+                break;
+            case 3:
+                Debug.Log("Level 3");
+                levelmgr.GetComponent<LevelManager>().LoadLevel3();
+                break;
+            case 4:
+                Debug.Log("Level 4");
+                levelmgr.GetComponent<LevelManager>().LoadLevel4();
+                break;
+            
+
+        }
 
     }
 
