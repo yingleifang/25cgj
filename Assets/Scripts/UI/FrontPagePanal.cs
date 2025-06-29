@@ -11,14 +11,17 @@ namespace QFramework.Coward
 	}
 	public partial class FrontPagePanal : UIPanel
 	{
-		protected override void OnInit(IUIData uiData = null)
+        
+        
+        protected override void OnInit(IUIData uiData = null)
 		{
 			mData = uiData as FrontPagePanalData ?? new FrontPagePanalData();
-			// please add init code here
-
+            // please add init code here
+            
 			//初始化UI
 			GameStartButton.onClick.AddListener(() =>
             {
+                
                 //关闭自己
                 CloseSelf();
                 Debug.Log("Let's Go!!!");
@@ -52,7 +55,8 @@ namespace QFramework.Coward
 		
 		protected override void OnOpen(IUIData uiData = null)
 		{
-		}
+            //GotoUISO.RaiseEvent(null,this);
+        }
 		
 		protected override void OnShow()
 		{
